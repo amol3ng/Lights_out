@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Why a night stroll is beneficial for you!</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,500;6..96,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --paper: #ebe8e0;
+            --ink: #1b2238;
+            --text: #2b2b2b;
+            --muted: #6b6a66;
+            --rule: #1b2238;
+
+            --display: "Bodoni Moda", "Didot", Georgia, serif;
+            --body: "Newsreader", Georgia, "Times New Roman", serif;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            background: #d9d6ce;
+            color: var(--text);
+            font-family: var(--body);
+            font-size: 1.1rem;
+            line-height: 1.65;
+        }
+
+        /* The "sheet of paper" */
+        .page {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 2rem 3rem 3rem;
+            background: var(--paper);
+            box-shadow: 0 2px 18px rgba(0, 0, 0, 0.12);
+        }
+
+        /* ---------- Top bar ---------- */
+        .topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            font-family: var(--display);
+            font-size: 1.9rem;
+            color: var(--ink);
+            padding-bottom: 0.4rem;
+            border-bottom: 2px solid var(--rule);
+            margin-bottom: 1.8rem;
+        }
+
+        .topbar span:last-child {
+            font-size: 1.5rem;
+        }
+
+        /* ---------- Two-column layout: picture | story ---------- */
+        .layout {
+            display: grid;
+            grid-template-columns: 340px 1fr;
+            gap: 2.5rem;
+            align-items: start;
+        }
+
+        /* ---------- Picture (never cropped) ---------- */
+        .photo {
+            margin: 0;
+        }
+
+        .photo img {
+            display: block;
+            width: 100%;
+            height: auto; /* keeps the original proportions */
+        }
+
+        .photo-bar {
+            display: flex;
+            flex-direction: column;
+            gap: 0.7rem;
+            padding: 0.8rem 0 0;
+        }
+
+        #status {
+            margin: 0;
+            font-style: italic;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        #switchButton {
+            width: 100%;
+            padding: 0.6rem 1.4rem;
+            font: 500 1rem var(--body);
+            letter-spacing: 0.03em;
+            color: var(--paper);
+            background: var(--ink);
+            border: 1px solid var(--ink);
+            cursor: pointer;
+            transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        #switchButton:hover {
+            background: transparent;
+            color: var(--ink);
+        }
+
+        #switchButton:focus-visible {
+            outline: 3px solid var(--ink);
+            outline-offset: 3px;
+        }
+
+        /* ---------- Headline ---------- */
+        h1 {
+            margin: 0 0 1.2rem;
+            font-family: var(--display);
+            font-weight: 500;
+            font-size: clamp(2rem, 4.4vw, 3.3rem);
+            line-height: 1.1;
+            color: var(--ink);
+            text-wrap: balance;
+        }
+
+        .headline-wrap {
+            border-bottom: 1px solid var(--rule);
+            margin-bottom: 1.4rem;
+        }
+
+        /* ---------- Article columns ---------- */
+        .article {
+            columns: 2;
+            column-gap: 1.8rem;
+            text-align: justify;
+            hyphens: auto;
+        }
+
+        .article p {
+            margin: 0 0 1rem;
+            font-size: 1.02rem;
+            line-height: 1.6;
+        }
+
+        .article p:first-child::first-letter {
+            float: left;
+            font-family: var(--display);
+            font-weight: 700;
+            font-size: 3.6rem;
+            line-height: 0.8;
+            padding: 0.3rem 0.5rem 0 0;
+            color: var(--ink);
+        }
+
+        .article p:last-child {
+            font-style: italic;
+        }
+
+        .bottom-rule {
+            margin-top: 2rem;
+            border-bottom: 2px solid var(--rule);
+        }
+
+        /* ---------- Smaller screens ---------- */
+        @media (max-width: 800px) {
+            .layout {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .photo {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 620px) {
+            .page { margin: 0; padding: 1.25rem 1.25rem 2.5rem; }
+            .topbar { font-size: 1.3rem; }
+            .topbar span:last-child { font-size: 1.1rem; }
+            .article { columns: 1; text-align: left; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="page">
+
+        <div class="topbar">
+            <span>Night Walks</span>
+            <span>Vol. 1</span>
+        </div>
+
+        <div class="layout">
+
+            <figure class="photo">
+                <img id="light" src="assets/lights-off.png" alt="A bench beside a lamp post on a quiet street at night">
+                <div class="photo-bar">
+                    <p id="status">The light is currently off.</p>
+                    <button id="switchButton" onclick="switchLight()">Switch on light</button>
+                </div>
+            </figure>
+
+            <div>
+                <div class="headline-wrap">
+                    <h1>Why a night stroll is beneficial for you!</h1>
+                </div>
+
+                <main class="article">
+                    <p>There is something peaceful about walking outside at night. During the day, the world often feels busy. Cars move through the streets, people rush from one place to another, and there always seems to be something demanding our attention. But when the evening arrives, everything begins to slow down.</p>
+
+                    <p>A walk beneath the night sky can feel like stepping away from all of that noise. The streets become quieter, the air feels cooler, and the world seems calmer. Streetlights glow against the darkness, creating small pools of light along the path. Above, the sky stretches endlessly, reminding us how much exists beyond our everyday routines.</p>
+
+                    <p>Walking at night can give us a moment to think. Without the distractions of a busy day, it becomes easier to notice the small things around us — the sound of leaves moving in the wind, the distant lights of houses, or the quiet rhythm of our own footsteps.</p>
+
+                    <p>Sometimes, peace does not come from doing something extraordinary. Sometimes it comes from simply slowing down, stepping outside, and allowing yourself a quiet moment beneath the sky.</p>
+
+                    <p>The night reminds us that it is okay to pause. It is okay to breathe. And sometimes, the simplest walk can make the world feel a little quieter and the mind feel a little lighter.</p>
+                </main>
+            </div>
+
+        </div>
+
+        <div class="bottom-rule"></div>
+
+    </div>
+
+    <script>
+        function switchLight() {
+            const light = document.getElementById("light");
+            const button = document.getElementById("switchButton");
+            const status = document.getElementById("status");
+
+            if (light.src.includes("lights-off")) {
+                light.src = "assets/lights-on.png";
+                button.textContent = "Switch off light";
+                status.textContent = "The light is currently on.";
+            } else {
+                light.src = "assets/lights-off.png";
+                button.textContent = "Switch on light";
+                status.textContent = "The light is currently off.";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
